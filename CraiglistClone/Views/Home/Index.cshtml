@@ -1,0 +1,64 @@
+﻿@*@model Model.*@
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>BuySellWin</h1>
+    @* SubHeading *@
+    <p class="lead">The Stuff you want, at the price you want</p>
+
+</div>
+
+<div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>For Sale</h2>
+
+
+
+        @foreach (var product in Model.MyProduct)
+        {
+            var DaysAgo = CraiglistClone.Models.ProductHolder.DaysAgo(product.CreatedOn);
+
+
+            <div id="title">@product.ProductTitle </div>
+
+            <div><a href="@product.ImgUrl"><img class="img-thumbnail thumbnail" src="@product.ImgUrl" alt="Image" /></a></div>
+
+            <div id="TableContain">
+
+                <table class="table borderless">
+                    <tr>
+
+
+                        <td id="price">$@product.Price </td>
+                        <td> @Html.ActionLink("Details", "ViewDetails", "Home", new { id = product.ItemId }, new { @class = "btn btn-primary" })</td>
+                    </tr>
+
+                    <tr>
+                        <td id="author" colspan="1">Seller: @product.CreatedBy </td>
+                        <td id="createdOn" colspan="1">Posted: @DaysAgo Days Ago...</td>
+
+                    </tr>
+                    <tr>
+                        <td id="city" colspan="1">@product.City, @product.State</td>
+
+
+                    </tr>
+                </table>
+
+            </div>
+        }
+
+
+
+
+
+    </div>
+
+
+</div>
